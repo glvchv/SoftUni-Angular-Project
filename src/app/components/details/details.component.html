@@ -1,0 +1,36 @@
+<!-- <div class="container">
+    <hr>
+    <div class="body">
+        <h1>{{watch.model}}</h1>
+        <img [src]="watch.imageUrl">
+        <p>{{watch.description}}</p>
+        <a class="muted-text">{{watch.price}}</a>
+        <a>Posted by: {{watch.creator}}</a>
+    </div>
+</div> -->
+<div class="container">
+    <div class="card">
+        <div class="col-xs-12">
+            <h1 class="text-center">{{watch?.model}}</h1>
+        </div>
+        <div class="col-xs-12">
+            <img [src]="watch?.imageUrl" alt="" class="img-responsive img-details">
+        </div>
+        <hr>
+        <div class="col-xs-12 watch-description"><strong>Description: </strong><i>{{watch?.description}}</i></div>
+        <hr>
+        <div class="info">
+            <p class="creator"><strong>Posted by: </strong>{{watch?.creator}}</p>
+            <p class="price"><strong>Price: </strong>${{watch?.price.toFixed(2)}}</p>
+        </div>
+        <hr>
+        <div class="msg-btn" *ngIf="!isAuth">
+            <button type="button" class="btn btn-info">Message the seller</button>
+        </div>
+        <div class="auth-btns" *ngIf="isAuth">
+            <button type="button" id="edit" class="btn btn-success">Edit post</button>
+            <button type="button" id="close" class="btn btn-danger">Close post</button>
+        </div>
+        <hr>
+    </div>
+</div>

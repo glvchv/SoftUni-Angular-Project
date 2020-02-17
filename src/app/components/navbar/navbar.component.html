@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink='' data-toggle='tooltip' data-html="true" title="Home page"><strong>TimeSellr</strong></a>
+    <div>
+        <ul class="navbar-nav">
+            <div *ngIf="!isLogged">
+                <li class="nav-item">
+                    <button class="btn btn-info" routerLink="/user/login">Login</button>
+                </li>
+            </div>
+            <div class='logged' *ngIf="isLogged">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/create">Post Offer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/user/login">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-info" (click)="logoutHandler()">Log Out</button>
+                </li>
+            </div>
+        </ul>
+    </div>
+</nav>

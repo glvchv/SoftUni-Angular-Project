@@ -1,0 +1,55 @@
+h1 {
+    text-align: center;
+}
+.centered {
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+#title {
+    font-size: 70px;
+}
+#desc {
+    font-size: 20px;
+    text-align: center;
+}
+#log {
+    font-size: 15px;
+    text-align: center;
+}
+
+li {
+    border-color: white;
+    border-radius: 40px;
+    box-shadow: 1px 2px 2px 1px;
+    padding: 0px;
+    margin: 30px;
+    display: inline-block;
+}
+
+.data {
+    margin-left: 20px;
+}
+.pic {
+    height: 300px;
+    width: 300px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+.info {
+    width: 300px;
+}
+#price {
+    float: left;
+}
+#seeMore {
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    color: lightseagreen;
+}
+
+
+
