@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { IWatch } from '../shared/list-interface';
+import { Injectable, Query } from '@angular/core';
+import { IWatch } from '../models/list-interface';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
@@ -36,4 +36,14 @@ export class ListService {
   getDetails(id: string) {
     return this.watchCollection.doc<IWatch>(`/${id}`).valueChanges()
   }
+
+  updateListing(watch: IWatch, id) {
+    this.afs.doc(`listings/${id}`).update(watch);
+  }
+
+  deleteListing(id) {
+    this.afs.doc(`listings/${id}`).delete();
+  }
+
+  
 }

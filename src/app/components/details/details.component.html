@@ -1,13 +1,3 @@
-<!-- <div class="container">
-    <hr>
-    <div class="body">
-        <h1>{{watch.model}}</h1>
-        <img [src]="watch.imageUrl">
-        <p>{{watch.description}}</p>
-        <a class="muted-text">{{watch.price}}</a>
-        <a>Posted by: {{watch.creator}}</a>
-    </div>
-</div> -->
 <div class="container">
     <div class="card">
         <div class="col-xs-12">
@@ -21,15 +11,16 @@
         <hr>
         <div class="info">
             <p class="creator"><strong>Posted by: </strong>{{watch?.creator}}</p>
-            <p class="price"><strong>Price: </strong>${{watch?.price.toFixed(2)}}</p>
+            <p class="price"><strong>Price: </strong>{{watch?.price.toFixed(2)}} BGN</p>
         </div>
+        <p class="posted"><strong>Created: </strong>{{watch?.date.toDate() | date:'MMM dd'}}</p>
         <hr>
         <div class="msg-btn" *ngIf="!isAuth">
             <button type="button" class="btn btn-info">Message the seller</button>
         </div>
         <div class="auth-btns" *ngIf="isAuth">
-            <button type="button" id="edit" class="btn btn-success">Edit post</button>
-            <button type="button" id="close" class="btn btn-danger">Close post</button>
+            <button type="button" id="edit" class="btn btn-success" routerLink='/edit/{{id}}'>Edit post</button>
+            <button type="button" id="close" class="btn btn-danger" (click)="deleteListing()">Delete post</button>
         </div>
         <hr>
     </div>

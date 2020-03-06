@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from 'src/app/services/list.service';
-import { IWatch } from 'src/app/shared/list-interface';
-import { ActivatedRoute } from '@angular/router';
+import { IWatch } from 'src/app/models/list-interface';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { AngularFirestoreDocument } from 'angularfire2/firestore';
 
@@ -13,7 +13,18 @@ import { AngularFirestoreDocument } from 'angularfire2/firestore';
 export class DetailsComponent implements OnInit {
   watch: IWatch;
   id: string;
-  constructor(private listService: ListService, private route: ActivatedRoute) { }
+
+  get isAuth() {
+    if(this.watch) {
+      if (this.watch.creator === sessionStorage.getItem('email')) {
+        return true;
+      } 
+      return false;
+    }
+    
+  }
+  
+  constructor(private listService: ListService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -26,7 +37,8 @@ export class DetailsComponent implements OnInit {
     
   }
 
-  get isAuth() {
-    return true;
+  deleteListing() {
+    this.listService.deleteListing(this.id);
+    this.router.navigate(['']);
   }
 }

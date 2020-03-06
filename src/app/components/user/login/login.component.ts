@@ -12,15 +12,15 @@ export class LoginComponent implements OnInit {
   emailRegex = new RegExp('[a-zA-Z0-9.-_]{6,}@gmail\.com');
 
   constructor(
-    private userService: UserService,
-    private router: Router) { }
+    private userService: UserService) { }
 
   ngOnInit() {
 
   }
-  handleLogin({ email, password }: { email: string, password: string }) {
-    this.userService.login(email, password);
-    this.router.navigate(['']);
+
+  login(data) {
+    this.userService.loginUser(data);
+    sessionStorage.setItem('email', data.email)
   }
 
 }

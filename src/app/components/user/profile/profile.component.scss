@@ -1,0 +1,23 @@
+.profile-img {
+    float: left;
+    height: 200px;
+    margin-right: 10px;
+}
+.border {
+    margin-top: 20px;
+    border-style: solid;
+}
+.text-muted {
+    font-size: 25px;
+}
+.post {
+    font-size: 20px;
+}
+.post:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(0, 83, 79);
+}
+h1 {
+    text-align: center;
+}

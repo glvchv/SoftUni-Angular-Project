@@ -1,5 +1,5 @@
 <div class="holder" *ngIf="isLogged">
-  <h1>Listings</h1>
+  <h1>Selling now</h1>
   <hr>
   <ul>
     <li *ngFor="let watch of watches">
@@ -19,15 +19,14 @@
 
 
 <div *ngIf="!isLogged">
-  <img
+  <img class="landing"
     src="https://anscommerce.s3.ap-south-1.amazonaws.com/live/image/catalog/brandstore/johnson/Information/service-center-5.jpg"
-    alt="Snow" style="width:100%;">
+    alt="Landing picture">
   <div class="centered">
     <p id="title"><strong>TimeSellr</strong></p>
     <p id="desc">The ultimate <i>timepiece</i> selling app!</p>
     <div id="log">
-      <p>Login now to get started:</p>
-      <button class="btn btn-info" routerLink='/user/login'>Login</button>
+      <p class="text-muted">Login now to get started!</p>
     </div>
   </div>
 </div>

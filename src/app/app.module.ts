@@ -17,6 +17,10 @@ import { ListService } from './services/list.service';
 import { CreateComponent } from './components/create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './components/details/details.component';
+import { EditComponent } from './components/edit/edit.component';
+import { UserService } from './services/user.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ProfileComponent } from './components/user/profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import { DetailsComponent } from './components/details/details.component';
     HomeComponent,
     CreateComponent,
     DetailsComponent,
+    EditComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,10 +42,12 @@ import { DetailsComponent } from './components/details/details.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule
   ],
   providers: [
-    ListService
+    ListService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

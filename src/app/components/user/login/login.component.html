@@ -1,8 +1,6 @@
 <div class="container">
     
-    <h1 class="text-italic">Log in</h1>
-    <hr>
-    <form #loginForm="ngForm" (ngSubmit)="handleLogin(loginForm.value)">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input #emailInput="ngModel" type="text" ngModel name="email" id="email" class="form-control"

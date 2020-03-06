@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ListService } from 'src/app/services/list.service';
-import { IWatch } from 'src/app/shared/list-interface';
+import { IWatch } from 'src/app/models/list-interface';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,6 +29,7 @@ export class CreateComponent implements OnInit {
     // value.comments = [];
     // value.comments.push({comment: 'I wanna buy it for $100', author: sessionStorage.getItem('email')})
     value.creator = sessionStorage.getItem('email');
+    value.date = new Date();
     this.listService.postWatch(value);
     this.router.navigate(['']);
     console.log(value);

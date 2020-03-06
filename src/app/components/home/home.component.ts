@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IWatch } from '../../shared/list-interface';
+import { IWatch } from '../../models/list-interface';
 import { ListService } from '../../services/list.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';

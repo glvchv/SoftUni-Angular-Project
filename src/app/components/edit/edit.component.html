@@ -1,0 +1,34 @@
+<div class="container">
+    <hr>
+    <h1 class="text-italic">Edit post</h1>
+    <form [formGroup]="form" (ngSubmit)="updateListing(form.value)">
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" formControlName="model" id="model" class="form-control" placeholder={{placeholderData?.model}}
+                minlength="10">
+            <p class="error-message" *ngIf="form.get('model').invalid && form.get('model').touched">Enter watch model!</p>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" formControlName="price" id="price" class="form-control"
+                value={{placeholderData?.price}}>
+            <p class="error-message" *ngIf="form.get('price') && form.get('price').touched">Price must be more
+                than 10 BGN!</p>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea formControlName="description" id="description" cols="30" rows="10"
+                class="form-control cause-description" placeholder={{placeholderData?.description}}></textarea>
+        </div>
+        <p class="error-message" *ngIf="form.get('description').invalid && form.get('description').touched">The
+            description must at least 20 symbols!</p>
+        <div class="form-group">
+            <label for="imageUrl">Image URL</label>
+            <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control"
+                placeholder={{placeholderData?.imageUrl}} pattern="https?:\/\/.*">
+        </div>
+        <p class="error-message" *ngIf="form.get('imageUrl').invalid && form.get('imageUrl').touched">Please provide a valid url!</p>
+        <button [disabled]="form.invalid" class="btn btn-info">Edit</button>
+    </form>
+    <hr>
+</div>

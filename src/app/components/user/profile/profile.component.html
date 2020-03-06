@@ -1,0 +1,17 @@
+<h1>Profile</h1>
+<div class="container">
+    <div class="box">
+        <div class="col-md-6 col-lg">
+            <img class="profile-img" src="https://www.easy-profile.com/images/default-avatar.png" />
+            <div class="profile-info">
+                <p class="text-muted">Email: <strong>{{email}}</strong></p>
+                <p class="infoType text-muted">Posted <strong>{{posts$.length}}</strong> watch/es for sale.</p>
+                <p class="post text-muted" *ngFor="let post of posts$" routerLink="/details/{{post.id}}"> - {{post.model}}</p>
+            </div>
+        </div>
+        <div class="purchased" *ngIf="items">
+            <p class="item" *ngFor="let item of items">'Email' has purchased 'Model' - 'Date'</p>
+            <p>See information about the shipping!</p>
+        </div>
+    </div>
+</div>

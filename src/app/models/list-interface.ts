@@ -5,5 +5,5 @@ export interface IWatch {
   creator: string;
   description: string;
   imageUrl: string;
-  //comments: Array<object>;
+  date: object;
 }
