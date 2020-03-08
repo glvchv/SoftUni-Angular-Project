@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +16,14 @@ export class LoginComponent implements OnInit {
   emailRegex = new RegExp('[a-zA-Z0-9.-_]{6,}@gmail\.com');
 
   constructor(
-    private userService: UserService, private toastr: ToastrService) { }
+    private userService: UserService) { }
 
   ngOnInit() {
 
   }
 
-  login() {
-    this.userService.loginUser(this.user.email, this.user.password);
+  login(value) {
+    this.userService.loginUser(value.email, value.password);
   }
 
 }

@@ -23,7 +23,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotFoundComponent } from './components/not-found/not-found.component'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     EditComponent,
     ProfileComponent,
     PurchaseComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

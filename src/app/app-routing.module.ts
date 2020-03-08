@@ -9,6 +9,7 @@ import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { PurchaseComponent } from './components/purchase/purchase.component';
 import { AuthGuard } from './core/auth.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
     path: 'purchase/:id',
     component: PurchaseComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
   
   

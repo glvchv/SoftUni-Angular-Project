@@ -1,9 +1,8 @@
-import { Injectable, Query } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IWatch } from '../models/list-interface';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
-import { resolve } from 'url';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class ListService {
 
   constructor(private afs: AngularFirestore, private toastr: ToastrService) {
     this.watchCollection = this.afs.collection('listings', ref => ref.orderBy('date', 'desc'));
-    this.list = this.watchCollection.snapshotChanges().pipe(map(changes => {
+    this.list = this.watchCollection.snapshotChanges().pipe(map((changes) => {
       return changes.map(a => {
         const data = a.payload.doc.data() as IWatch;
         data.id = a.payload.doc.id;

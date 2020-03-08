@@ -59,7 +59,7 @@ export class UserService {
       })
   }
 
-  loginUser(email, password) {
+  loginUser(email:string, password:string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.toastr.success('You have logged in successfully!');
