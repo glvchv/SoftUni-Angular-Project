@@ -19,7 +19,14 @@ h1 {
     font-size: 15px;
     text-align: center;
 }
-
+#p {
+    color: lightgrey;
+}
+#p:hover {
+    cursor: pointer;
+    color: white;
+    text-decoration: wavy;
+}
 li {
     border-color: white;
     border-radius: 40px;

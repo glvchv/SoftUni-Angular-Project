@@ -2,48 +2,93 @@ import { Injectable } from '@angular/core';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable, of, from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, of, from, Subject } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import { IUser } from '../models/user-interface';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   user$: Observable<IUser>;
-  currentUser = null;
-  logged: boolean;
+  private _isAuth = false;
 
-  get isLogged() {
-    return !!this.currentUser;
+  isAuthChanged = new Subject<boolean>();
+
+  constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore, private toastr: ToastrService) {
+    // ********* FIREBASE DOCUMENT WITH USER ID AND success ********
+    // this.user$ = this.afAuth.authState.pipe(switchMap(user => {
+    //   if (user) {
+    //     return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+    //   } else {
+    //     return of(null)
+    //   }
+    // }))
+  }
+  get isAuth() {
+    return this._isAuth;
   }
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore) {
-    this.user$ = this.afAuth.authState.pipe(switchMap(user => {
-      if (user) {
-        return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
+  initializeAuthState() {
+    this.afAuth.authState.subscribe((userState) => {
+      if (userState) {
+        this._isAuth = true;
+        this.isAuthChanged.next(true);
       } else {
-        return of(null)
+        this._isAuth = false;
+        this.isAuthChanged.next(false);
       }
-    }))
-    const email = sessionStorage.getItem('email');
-    this.currentUser = email ? email : null;
+    });
   }
 
-  login(email: string, password: string) {
-    sessionStorage.setItem('email', email);
-    this.currentUser = { email };
-
-    // return of({ username }).pipe(
-    //   tap((val) => {
-    //     if (!val) { return; }
-    //     this.toastrService.show('Successfuly logged in!');
-    //   })
-    // ) // this.http.post('https://my-domain.com/api/loing', { username, password })
+  loggedIn() {
+    return this.afAuth.authState.pipe(map(user => !!user));
   }
+
+  registerUser(data) {
+
+    return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
+      .then((result) => {
+        this.toastr.success('You have register successfully!');
+        this.router.navigate(['/user/login']);;
+      }).catch((error) => {
+        this.toastr.error(error);
+      })
+  }
+
+  loginUser(email, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.toastr.success('You have logged in successfully!');
+        sessionStorage.setItem('email', email);
+        this.router.navigate(['']);
+      }).catch((error) => {
+        this.toastr.error(error);
+      })
+  }
+
+  logout() {
+    this.afAuth.auth.signOut()
+      .then((result) => {
+        sessionStorage.clear();
+        this.toastr.success('You have logged out successfully!');
+      })
+      .catch((error) => {
+        this.toastr.error(error);
+      })
+
+  }
+
+  // return of({ username }).pipe(
+  //   tap((val) => {
+  //     if (!val) { return; }
+  //     this.toastrService.show('Successfuly logged in!');
+  //   })
+  // ) // this.http.post('https://my-domain.com/api/loing', { username, password })
+
 
   //  ********** GOOGLE SIGN UP **********
   // async googleLogin() {
@@ -66,31 +111,5 @@ export class UserService {
   //   return userRef.set(data, { merge: true });
   // }
 
-  registerUser(data) {
 
-    return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
-      .then((result) => {
-        window.alert("You have been successfully registered!");
-        this.router.navigate(['/user/login']);;
-        console.log(result.user)
-      }).catch((error) => {
-        window.alert(error.message)
-      })
-  }
-
-  loginUser(data) {
-    return this.afAuth.auth.signInWithEmailAndPassword(data.email, data.password)
-      .then((result) => {
-        this.currentUser = result.user.email;
-        this.router.navigate(['']);
-      }).catch((error) => {
-        window.alert(error.message)
-      })
-  }
-
-  logout() {
-    this.afAuth.auth.signOut();
-    this.currentUser = null;
-    sessionStorage.clear();
-  }
 }

@@ -1,27 +1,36 @@
-<div class="container">
-    <div class="card">
-        <div class="col-xs-12">
-            <h1 class="text-center">{{watch?.model}}</h1>
+<section>
+    <div class="container py-5">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{watch?.imageUrl}}" class="w-100">
+                </div>
+                <div class="col-md-6 px-3">
+                    <div class="card-block px-3">
+                        <h4 class="card-title">{{watch?.model}}</h4>
+                        <p class="card-text">{{watch?.description}}</p>
+                        <p class="creator"><strong>Posted by: </strong>{{watch?.creator}}</p>
+                        <p class="price"><strong>Price: </strong>BGN {{watch?.price.toFixed(2)}}</p>
+                        <p class="posted"><strong>Posted on: </strong>{{watch?.date.toDate() | date:'MMM dd'}}</p>
+                        <div class="buy-btn" *ngIf="!isAuth">
+                            <button type="button" class="btn btn-info" [disabled]="watch?.bought"
+                                routerLink="/purchase/{{id}}">Purchase</button>
+                            <p *ngIf="watch?.bought" style="color: lightpink; padding-top: 10px; text-align: left;">This
+                                watch has been purchased already!</p>
+                        </div>
+                        <div class="auth-btns" *ngIf="isAuth">
+                            <button type="button" id="edit" class="btn btn-success" [disabled]="watch?.bought"
+                                routerLink='/edit/{{id}}'>Edit post</button>
+                            <button type="button" id="close" class="btn btn-danger" (click)="deleteListing()">Delete
+                                post</button>
+                            <p *ngIf="watch?.bought" style="color: lightpink; padding-top: 10px; text-align: left;">This
+                                watch has been
+                                purchased!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="col-xs-12">
-            <img [src]="watch?.imageUrl" alt="" class="img-responsive img-details">
-        </div>
-        <hr>
-        <div class="col-xs-12 watch-description"><strong>Description: </strong><i>{{watch?.description}}</i></div>
-        <hr>
-        <div class="info">
-            <p class="creator"><strong>Posted by: </strong>{{watch?.creator}}</p>
-            <p class="price"><strong>Price: </strong>{{watch?.price.toFixed(2)}} BGN</p>
-        </div>
-        <p class="posted"><strong>Created: </strong>{{watch?.date.toDate() | date:'MMM dd'}}</p>
-        <hr>
-        <div class="msg-btn" *ngIf="!isAuth">
-            <button type="button" class="btn btn-info">Message the seller</button>
-        </div>
-        <div class="auth-btns" *ngIf="isAuth">
-            <button type="button" id="edit" class="btn btn-success" routerLink='/edit/{{id}}'>Edit post</button>
-            <button type="button" id="close" class="btn btn-danger" (click)="deleteListing()">Delete post</button>
-        </div>
-        <hr>
     </div>
-</div>
+</section>

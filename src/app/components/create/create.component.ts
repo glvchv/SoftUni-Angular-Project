@@ -26,10 +26,10 @@ export class CreateComponent implements OnInit {
   }
 
   postOffer(value: IWatch) {
-    // value.comments = [];
-    // value.comments.push({comment: 'I wanna buy it for $100', author: sessionStorage.getItem('email')})
     value.creator = sessionStorage.getItem('email');
     value.date = new Date();
+    value.bought = false;
+    value.buyerInfo = {};
     this.listService.postWatch(value);
     this.router.navigate(['']);
     console.log(value);

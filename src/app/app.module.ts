@@ -20,7 +20,10 @@ import { DetailsComponent } from './components/details/details.component';
 import { EditComponent } from './components/edit/edit.component';
 import { UserService } from './services/user.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { ProfileComponent } from './components/user/profile/profile.component'
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { PurchaseComponent } from './components/purchase/purchase.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { ProfileComponent } from './components/user/profile/profile.component'
     DetailsComponent,
     EditComponent,
     ProfileComponent,
+    PurchaseComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,11 +47,17 @@ import { ProfileComponent } from './components/user/profile/profile.component'
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-top-full-width',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     ListService,
-    UserService
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

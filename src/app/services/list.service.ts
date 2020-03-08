@@ -4,6 +4,7 @@ import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
 import { resolve } from 'url';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,8 @@ export class ListService {
   list: Observable<IWatch[]>;
   watchDetails: IWatch;
 
-  constructor(private afs: AngularFirestore) {
-    this.watchCollection = this.afs.collection('listings');
-
+  constructor(private afs: AngularFirestore, private toastr: ToastrService) {
+    this.watchCollection = this.afs.collection('listings', ref => ref.orderBy('date', 'desc'));
     this.list = this.watchCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as IWatch;
@@ -30,7 +30,13 @@ export class ListService {
   }
 
   postWatch(watch: IWatch) {
-    this.watchCollection.add({...watch});
+    this.watchCollection.add({...watch})
+    .then((result) => {
+      this.toastr.success('Successfully posted!')
+    })
+    .catch((error) => {
+      this.toastr.error(error);
+    })
   }
 
   getDetails(id: string) {
@@ -38,11 +44,23 @@ export class ListService {
   }
 
   updateListing(watch: IWatch, id) {
-    this.afs.doc(`listings/${id}`).update(watch);
+    this.afs.doc(`listings/${id}`).update(watch)
+    .then((result) => {
+      this.toastr.success('Successfully updated!')
+    })
+    .catch((error) => {
+      this.toastr.error(error);
+    })
   }
 
   deleteListing(id) {
-    this.afs.doc(`listings/${id}`).delete();
+    this.afs.doc(`listings/${id}`).delete()
+    .then((result) => {
+      this.toastr.success('Successfully deleted!');
+    })
+    .catch((error) => {
+      this.toastr.error(error);
+    })
   }
 
   

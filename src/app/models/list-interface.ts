@@ -6,4 +6,6 @@ export interface IWatch {
   description: string;
   imageUrl: string;
   date: object;
+  bought: boolean;
+  buyerInfo: object;
 }

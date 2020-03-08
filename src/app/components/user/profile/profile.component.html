@@ -1,17 +1,36 @@
 <h1>Profile</h1>
 <div class="container">
+    <hr>
     <div class="box">
         <div class="col-md-6 col-lg">
             <img class="profile-img" src="https://www.easy-profile.com/images/default-avatar.png" />
             <div class="profile-info">
                 <p class="text-muted">Email: <strong>{{email}}</strong></p>
-                <p class="infoType text-muted">Posted <strong>{{posts$.length}}</strong> watch/es for sale.</p>
-                <p class="post text-muted" *ngFor="let post of posts$" routerLink="/details/{{post.id}}"> - {{post.model}}</p>
+                <p class="infoType text-muted">Posted <strong>{{posts$?.length}}</strong> watch/es for sale.</p>
+                <p class="post text-muted" *ngFor="let post of posts$" routerLink="/details/{{post.id}}"> -
+                    {{post.model}}</p>
             </div>
         </div>
-        <div class="purchased" *ngIf="items">
-            <p class="item" *ngFor="let item of items">'Email' has purchased 'Model' - 'Date'</p>
-            <p>See information about the shipping!</p>
+        <div class="purchased" *ngIf="hasSold">
+            <h2>Last sold: </h2>
+            <div class="item" (click)="show(item.id)" *ngFor="let item of purchased">
+                <p class='email-price'>Somebody has purchased
+                    <strong>{{item?.model}}</strong> for
+                    <strong>BGN {{item.price.toFixed(2)}}</strong></p>
+                <div class="card text-center" id="{{item.id}}" style="display: none;">
+                    <div class="card-header">
+                        {{item?.buyerInfo.firstName}} {{item?.buyerInfo.lastName}}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Email: {{item?.buyerInfo.email}}</h5>
+                        <h5 class="card-title">Phone number: {{item?.buyerInfo.number}}</h5>
+                        <p class="card-text">Date of Purchase: {{item?.buyerInfo.date.toDate() | date: 'MMM dd'}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Address: {{item?.buyerInfo.address}}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

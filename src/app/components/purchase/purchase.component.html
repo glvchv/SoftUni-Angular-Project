@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 class="text-italic">Shipment Information</h1>
+    <hr>
+    <form #purchaseForm="ngForm" (ngSubmit)="purchaseWatch(purchaseForm.value)">
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input #fistInput="ngModel" type="text" ngModel name="firstName" id="firstName" class="form-control"
+          placeholder="John" pattern="^[A-Z]{1}[a-z]{2,}$" required>
+        <p class="error-message" *ngIf="fistInput.invalid && fistInput.touched">Please enter a valid first name!</p>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input #lastInput="ngModel" type="text" ngModel name="lastName" id="lastName" class="form-control"
+          placeholder="Doe" pattern="^[A-Z]{1}[a-z]{2,}$" required>
+        <p class="error-message" *ngIf="lastInput.invalid && lastInput.touched">Please enter a valid last name!</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input #emailInput="ngModel" type="text" ngModel name="email" id="email" class="form-control" value={{email}} placeholder="{{email}}" disabled>
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input #addressInput="ngModel" type="text" ngModel name="address" id="address" class="form-control"
+          placeholder="Sofia, Vitosha N24" required minlength="6">
+        <p class="error-message" *ngIf="addressInput.invalid && addressInput.touched">Address must be entered!</p>
+      </div>
+      <div class="form-group">
+        <label for="number">Phone number</label>
+        <input #numberInput="ngModel" type="text" ngModel name="number" id="number" class="form-control"
+          placeholder="+359 123456789" pattern="\+359[\d]{9}" required minlength="12">
+        <p class="error-message" *ngIf="numberInput.invalid && numberInput.touched">Phone number must be entered!</p>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="purchaseForm.invalid">Send Order</button>
+    </form>
+    <hr>
+  </div>

@@ -8,11 +8,10 @@
         <h5 class="data">{{watch.model}}</h5>
         <p class="data"><small class="text-muted">{{watch.description}}...</small></p>
         <p class="data"><small class="text-muted">Posted by: <strong>{{watch.creator}}</strong></small></p>
-        <p class="data" id="price"><small class="text-muted">Price: ${{watch.price}}</small></p>
+        <p class="data" id="price"><small class="text-muted">Price: BGN{{watch.price}}</small></p>
         <a id='seeMore' type="button" routerLink='/details/{{watch.id}}'><small>See more...</small></a>
       </div>
     </li>
-    <hr>
   </ul>
 </div>
 
@@ -20,13 +19,13 @@
 
 <div *ngIf="!isLogged">
   <img class="landing"
-    src="https://anscommerce.s3.ap-south-1.amazonaws.com/live/image/catalog/brandstore/johnson/Information/service-center-5.jpg"
+    src="https://prikachi.net/images/MXsAb.jpg"
     alt="Landing picture">
   <div class="centered">
     <p id="title"><strong>TimeSellr</strong></p>
     <p id="desc">The ultimate <i>timepiece</i> selling app!</p>
     <div id="log">
-      <p class="text-muted">Login now to get started!</p>
+      <p id="p" routerLink="/user/login">Login now to get started!</p>
     </div>
   </div>
 </div>

@@ -1,7 +1,14 @@
+.container {
+    margin-top: 20px;
+}
+.box {
+    border-style: solid;
+    text-align: center;
+}
 .profile-img {
-    float: left;
     height: 200px;
     margin-right: 10px;
+    margin-bottom: 20px;
 }
 .border {
     margin-top: 20px;
@@ -20,4 +27,18 @@
 }
 h1 {
     text-align: center;
+}
+.profile-info {
+    text-align: center;
+}
+.email-price {
+    color: lightskyblue;
+}
+.email-price:hover {
+    
+    color: lightseagreen;
+    cursor: pointer;
+}
+h2 {
+    color: lightslategrey;
 }

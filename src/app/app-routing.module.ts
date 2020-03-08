@@ -7,6 +7,8 @@ import { CreateComponent } from './components/create/create.component';
 import { DetailsComponent } from './components/details/details.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { PurchaseComponent } from './components/purchase/purchase.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
@@ -16,14 +18,15 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: CreateComponent
+    component: CreateComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'user',
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'register',
@@ -31,17 +34,25 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },
   {
     path: 'details/:id',
-    component: DetailsComponent
+    component: DetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit/:id',
-    component: EditComponent
+    component: EditComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'purchase/:id',
+    component: PurchaseComponent,
+    canActivate: [AuthGuard]
   }
   
   

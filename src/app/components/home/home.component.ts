@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.listService.getList().subscribe(data => {
-      console.log(data);
       this.watches = data;
       this.watches.forEach(watch => {
         watch.description = watch.description.substring(0, 30);
@@ -28,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   get isLogged() {
-    return this.userService.isLogged;
+    return this.userService.isAuth;
   }
 
 }
