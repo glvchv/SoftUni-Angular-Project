@@ -19,7 +19,7 @@ export class UserService {
   isAuthChanged = new Subject<boolean>();
 
   constructor(private afAuth: AngularFireAuth, private router: Router, private afs: AngularFirestore, private toastr: ToastrService) {
-    // ********* FIREBASE DOCUMENT WITH USER ID AND success ********
+    // ********* FIREBASE DOCUMENT WITH USER ID AND  USER DATA ********
     // this.user$ = this.afAuth.authState.pipe(switchMap(user => {
     //   if (user) {
     //     return this.afs.doc<IUser>(`users/${user.uid}`).valueChanges();
