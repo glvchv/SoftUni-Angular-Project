@@ -44,10 +44,6 @@ export class UserService {
     });
   }
 
-  loggedIn() {
-    return this.afAuth.authState.pipe(map(user => !!user));
-  }
-
   registerUser(data) {
 
     return this.afAuth.auth.createUserWithEmailAndPassword(data.email, data.password)
