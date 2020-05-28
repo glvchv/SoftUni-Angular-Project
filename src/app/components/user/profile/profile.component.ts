@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       } else {
         this.hasSold = false;
       }
-      console.log(this.hasSold)
     })
   }
 

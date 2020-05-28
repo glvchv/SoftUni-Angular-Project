@@ -4,12 +4,12 @@
   <ul>
     <li *ngFor="let watch of watches">
       <div class="info">
-        <img class="pic" [src]="watch.imageUrl" alt="image">
-        <h5 class="data">{{watch.model}}</h5>
-        <p class="data"><small class="text-muted">{{watch.description}}...</small></p>
-        <p class="data"><small class="text-muted">Posted by: <strong>{{watch.creator}}</strong></small></p>
-        <p class="data" id="price"><small class="text-muted">Price: BGN{{watch.price}}</small></p>
-        <a id='seeMore' type="button" routerLink='/details/{{watch.id}}'><small>See more...</small></a>
+        <img class="pic" [src]="watch?.imageUrl" alt="image">
+        <h5 class="data">{{watch?.model}}</h5>
+        <p class="data"><small class="text-muted">{{watch?.description}}...</small></p>
+        <p class="data"><small class="text-muted">Posted by: <strong>{{watch?.creator}}</strong></small></p>
+        <p class="data" id="price"><small class="text-muted">Price: BGN{{watch?.price}}</small></p>
+        <a id='seeMore' type="button" routerLink='/details/{{watch?.id}}'><small>See more...</small></a>
       </div>
     </li>
   </ul>

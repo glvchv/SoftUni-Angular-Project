@@ -19,15 +19,15 @@
                     <strong>BGN {{item.price.toFixed(2)}}</strong></p>
                 <div class="card text-center" id="{{item.id}}" style="display: none;">
                     <div class="card-header">
-                        {{item?.buyerInfo.firstName}} {{item?.buyerInfo.lastName}}
+                        {{item?.buyerInfo['firstName']}} {{item?.buyerInfo['lastName']}}
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Email: {{item?.buyerInfo.email}}</h5>
-                        <h5 class="card-title">Phone number: {{item?.buyerInfo.number}}</h5>
-                        <p class="card-text">Date of Purchase: {{item?.buyerInfo.date.toDate() | date: 'MMM dd'}}</p>
+                        <h5 class="card-title">Email: {{item?.buyerInfo['email']}}</h5>
+                        <h5 class="card-title">Phone number: {{item?.buyerInfo['number']}}</h5>
+                        <p class="card-text">Date of Purchase: {{item?.buyerInfo['date'].toDate() | date: 'MMM dd'}}</p>
                     </div>
                     <div class="card-footer text-muted">
-                        Address: {{item?.buyerInfo.address}}
+                        Address: {{item?.buyerInfo['address']}}
                     </div>
                 </div>
             </div>
